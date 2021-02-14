@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<configuration name="MCIMX6Z0xxx09" xsi:schemaLocation="http://mcuxpresso.nxp.com/XSD/mex_configuration_1.8 http://mcuxpresso.nxp.com/XSD/mex_configuration_1.8.xsd" uuid="65c7592a-c988-46cc-8382-ab289d33534a" version="1.8" xmlns="http://mcuxpresso.nxp.com/XSD/mex_configuration_1.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <common>
+      <processor>MCIMX6Z0xxx09</processor>
+      <package>MCIMX6Z0DVM09</package>
+      <mcu_data>ksdk2_0</mcu_data>
+      <cores selected="ca7">
+         <core name="Cortex-A7" id="ca7" description="A7 core"/>
+      </cores>
+      <description></description>
+   </common>
+   <preferences>
+      <validate_boot_init_only>true</validate_boot_init_only>
+      <generate_extended_information>false</generate_extended_information>
+      <generate_code_modified_registers_only>false</generate_code_modified_registers_only>
+   </preferences>
+   <tools>
+      <pins name="Pins" version="8.0" enabled="true" update_project_code="true">
+         <generated_project_files>
+            <file path="board/pin_mux.c" update_enabled="true"/>
+            <file path="board/pin_mux.dts" update_enabled="true"/>
+            <file path="board/pin_mux.h" update_enabled="true"/>
+         </generated_project_files>
+         <pins_profile>
+            <processor_version>8.0.0</processor_version>
+            <power_domains/>
+         </pins_profile>
+         <functions_list>
+            <function name="BOARD_InitPins">
+               <description>Configures pin routing and optionally pin electrical features.</description>
+               <options>
+                  <callFromInitBoot>false</callFromInitBoot>
+                  <coreID>ca7</coreID>
+               </options>
+               <dependencies/>
+               <pins>
+                  <pin peripheral="USDHC1" signal="usdhc_data, 0" pin_num="B3" pin_signal="SD1_DATA0"/>
+                  <pin peripheral="USDHC1" signal="usdhc_data, 1" pin_num="B2" pin_signal="SD1_DATA1"/>
+                  <pin peripheral="USDHC1" signal="usdhc_data, 2" pin_num="B1" pin_signal="SD1_DATA2"/>
+                  <pin peripheral="USDHC1" signal="usdhc_data, 3" pin_num="A2" pin_signal="SD1_DATA3"/>
+                  <pin peripheral="USDHC1" signal="usdhc_cmd" pin_num="C2" pin_signal="SD1_CMD"/>
+                  <pin peripheral="USDHC1" signal="usdhc_clk" pin_num="C1" pin_signal="SD1_CLK"/>
+                  <pin peripheral="USDHC1" signal="usdhc_cd_b" pin_num="J14" pin_signal="UART1_RTS_B"/>
+                  <pin peripheral="USDHC2" signal="usdhc_clk" pin_num="D8" pin_signal="NAND_RE_B"/>
+                  <pin peripheral="USDHC2" signal="usdhc_cmd" pin_num="C8" pin_signal="NAND_WE_B"/>
+                  <pin peripheral="USDHC2" signal="usdhc_data, 1" pin_num="B7" pin_signal="NAND_DATA01"/>
+                  <pin peripheral="USDHC2" signal="usdhc_data, 0" pin_num="D7" pin_signal="NAND_DATA00"/>
+                  <pin peripheral="USDHC2" signal="usdhc_data, 2" pin_num="A7" pin_signal="NAND_DATA02"/>
+                  <pin peripheral="USDHC2" signal="usdhc_data, 3" pin_num="D6" pin_signal="NAND_DATA03"/>
+                  <pin peripheral="UART1" signal="uart_tx" pin_num="K14" pin_signal="UART1_TX_DATA"/>
+                  <pin peripheral="UART1" signal="uart_rx" pin_num="K16" pin_signal="UART1_RX_DATA"/>
+                  <pin peripheral="UART2" signal="uart_tx" pin_num="J17" pin_signal="UART2_TX_DATA"/>
+                  <pin peripheral="UART2" signal="uart_rx" pin_num="J16" pin_signal="UART2_RX_DATA"/>
+                  <pin peripheral="UART2" signal="uart_rts_b" pin_num="H14" pin_signal="UART2_RTS_B"/>
+                  <pin peripheral="UART2" signal="uart_cts_b" pin_num="J15" pin_signal="UART2_CTS_B"/>
+                  <pin peripheral="PWM1" signal="pwm_out" pin_num="N17" pin_signal="GPIO1_IO08"/>
+                  <pin peripheral="PWM2" signal="pwm_out" pin_num="M15" pin_signal="GPIO1_IO09"/>
+                  <pin peripheral="I2C1" signal="i2c_scl" pin_num="G17" pin_signal="UART4_TX_DATA"/>
+                  <pin peripheral="I2C1" signal="i2c_sda" pin_num="G16" pin_signal="UART4_RX_DATA"/>
+                  <pin peripheral="SAI1" signal="sai_rx_bclk" pin_num="E1" pin_signal="SD2_DATA03"/>
+                  <pin peripheral="SAI1" signal="sai_mclk" pin_num="E3" pin_signal="SD2_DATA01"/>
+                  <pin peripheral="SAI1" signal="sai_rx_data" pin_num="D2" pin_signal="SD2_DATA06"/>
+                  <pin peripheral="SAI1" signal="sai_rx_sync" pin_num="E2" pin_signal="SD2_DATA02"/>
+                  <pin peripheral="SAI1" signal="sai_tx_bclk" pin_num="D3" pin_signal="SD2_DATA05"/>
+                  <pin peripheral="SAI1" signal="sai_tx_data" pin_num="D1" pin_signal="SD2_DATA07"/>
+                  <pin peripheral="SAI1" signal="sai_tx_sync" pin_num="D4" pin_signal="SD2_DATA04"/>
+                  <pin peripheral="USB" signal="usb_otg2_id" pin_num="D17" pin_signal="KPP_ROW7"/>
+                  <pin peripheral="QSPI" signal="qspi_a_ss0_b" pin_num="E6" pin_signal="NAND_DQS"/>
+                  <pin peripheral="QSPI" signal="qspi_a_sclk" pin_num="D5" pin_signal="NAND_WP_B"/>
+                  <pin peripheral="QSPI" signal="qspi_a_data, 1" pin_num="C5" pin_signal="NAND_CE0_B"/>
+                  <pin peripheral="QSPI" signal="qspi_a_data, 2" pin_num="B5" pin_signal="NAND_CE1_B"/>
+                  <pin peripheral="QSPI" signal="qspi_a_data, 3" pin_num="A4" pin_signal="NAND_CLE"/>
+                  <pin peripheral="QSPI" signal="qspi_a_dqs" pin_num="B4" pin_signal="NAND_ALE"/>
+                  <pin peripheral="UART3" signal="uart_rx" pin_num="H16" pin_signal="UART3_RX_DATA"/>
+                  <pin peripheral="UART3" signal="uart_tx" pin_num="H17" pin_signal="UART3_TX_DATA"/>
+                  <pin peripheral="UART3" signal="uart_rts_b" pin_num="G14" pin_signal="UART3_RTS_B"/>
+                  <pin peripheral="UART3" signal="uart_cts_b" pin_num="H15" pin_signal="UART3_CTS_B"/>
+                  <pin peripheral="SPDIF" signal="spdif_in" pin_num="M15" pin_signal="GPIO1_IO09"/>
+                  <pin peripheral="SPDIF" signal="spdif_out" pin_num="N17" pin_signal="GPIO1_IO08"/>
+                  <pin peripheral="I2C2" signal="i2c_scl" pin_num="F17" pin_signal="I2C2_SCL"/>
+                  <pin peripheral="I2C2" signal="i2c_sda" pin_num="G13" pin_signal="I2C2_SDA"/>
+                  <pin peripheral="ECSPI1" signal="ecspi_miso" pin_num="B16" pin_signal="GPIO3_IO28"/>
+                  <pin peripheral="ECSPI1" signal="ecspi_mosi" pin_num="A14" pin_signal="GPIO3_IO27"/>
+                  <pin peripheral="ECSPI1" signal="ecspi_sclk" pin_num="C14" pin_signal="GPIO3_IO25"/>
+                  <pin peripheral="ECSPI1" signal="ecspi_ss, 0" pin_num="B14" pin_signal="GPIO3_IO26"/>
+                  <pin peripheral="ECSPI1" signal="ecspi_ss, 1" pin_num="B10" pin_signal="GPIO3_IO10"/>
+                  <pin peripheral="ECSPI1" signal="ecspi_ss, 2" pin_num="A10" pin_signal="GPIO3_IO11"/>
+                  <pin peripheral="GPT1" signal="gpt_clk" pin_num="F14" pin_signal="KPP_ROW3"/>
+                  <pin peripheral="USB" signal="usb_otg1_id" pin_num="K13" pin_signal="GPIO1_IO00"/>
+                  <pin peripheral="GPT1" signal="gpt_capture, 2" pin_num="D15" pin_signal="KPP_COL3"/>
+                  <pin peripheral="GPT1" signal="gpt_compare, 1" pin_num="L15" pin_signal="GPIO1_IO01"/>
+                  <pin peripheral="PWM4" signal="pwm_out" pin_num="D10" pin_signal="GPIO3_IO08"/>
+                  <pin peripheral="PWM3" signal="pwm_out" pin_num="E10" pin_signal="GPIO3_IO07"/>
+                  <pin peripheral="QSPI" signal="qspi_a_data, 0" pin_num="A3" pin_signal="NAND_READY_B"/>
+               </pins>
+            </function>
+         </functions_list>
+      </pins>
+      <ddr name="DDR" version="1.0" enabled="false" update_project_code="true">
+         <generated_project_files/>
+         <components/>
+      </ddr>
+      <periphs name="Peripherals" version="8.0" enabled="false" update_project_code="true">
+         <peripherals_profile>
+            <processor_version>N/A</processor_version>
+         </peripherals_profile>
+         <functional_groups/>
+         <components/>
+      </periphs>
+   </tools>
+</configuration>

@@ -47,7 +47,7 @@ Grab the mxiot schematics as a starting point, but solder down a full-featured i
 
 # Hardware
 ## PCB Manufacture
-OSHPark's test 6-layer service and JLC's 6-layer service have both been tested with the gerber files and the resulting boards pass stress-tests. While JLC's stack-up isn't ideal for the impedance targets of the design, it is much less expensive than a full-custom stack-up from a different board house. The boards will cost roughly $100 when ordered with ENIG (highly recommended). We also recommend ordering an electropolished solder stencil. I plan to do some EMC chamber testing at some point to see if the impedance mismatches on the JLC boards cause more-pronounced emissions.
+OSHPark's test 6-layer service and JLC's 6-layer service have both been tested with the gerber files and the resulting boards pass stress-tests. While JLC's stack-up isn't ideal for the impedance targets of the design, it is much less expensive than a full-custom stack-up from a different board house. The boards will cost roughly $100 when ordered with ENIG (highly recommended). I also recommend ordering an electropolished solder stencil. I plan to do some EMC chamber testing at some point to see if the impedance mismatches on the JLC boards cause more-pronounced emissions.
 
 ## Assembly
 mxiot is designed to be hand-assembled with a kitchen hotplate and low-cost hot-air gun. To assemble, paste up the top side of the PCB, place the components, and heat with a hot plate until the solder becomes molten. You can ever-so-slightly tap the BGAs on the board and they should bounce back (due to the surface tension in the solder). Pay special attention to DRAM alignment; there are a multitude of silkscreen lines that cover some, but not all, standard DDR3 footprints. 
@@ -63,7 +63,7 @@ The i.MX6UL/ULL/ULZ has several internal regulators that — while not strictly 
 
 This power supply topology is designed for always-on, wall-powered applications. The platform is incapable of doing any dynamic voltage-scaling, so power consumption could be significantly worse (depending on workload) than with a PMIC or adjustable regulator.
 
-The i.MX6 has support for a multitude of a boot modes usually prototyped by GPIO strapping. Instead of exposing these signals (which would require tons of resistor switches), we rely on the SD/MMC Manufacture Mode, where the chip will always boot from MMC0 unless the OTP boot configuration memory is flashed. If you wish to boot from QSPI flash, you'll have to initially boot from MMC, and then program the OTP memory (hoping to get it right to avoid bricking your imx6).
+The i.MX6 has support for a multitude of a boot modes usually prototyped by GPIO strapping. Instead of exposing these signals (which would require tons of resistor switches), I rely on the SD/MMC Manufacture Mode, where the chip will always boot from MMC0 unless the OTP boot configuration memory is flashed. If you wish to boot from QSPI flash, you'll have to initially boot from MMC, and then program the OTP memory (hoping to get it right to avoid bricking your imx6).
 
 Rather than use a discrete WiFi/BT solution, mxiot uses standard 44-pin SDIO/UART modules that help make small-volume hand-assembly faster (as these circuits tend to have many different passive values). 
 
@@ -89,7 +89,7 @@ While you could use mxiot as a (very bad) single-board computer, it's designed f
 I don't have published patches yet, but you can largely use an unmodified i.MX6ULZ EVK port to get mxiot to boot. 
 
 ## Buildroot
-Buildroot doesn't have an i.MX6ULZ defconfig, but we can start with an i.MX6ULL one and go from there
+Buildroot doesn't have an i.MX6ULZ defconfig, but you can start with an i.MX6ULL one and go from there
 ```
 mkdir mxiot && cd mxiot
 git clone https://git.busybox.net/buildroot/
@@ -102,7 +102,7 @@ Change **Kernel > In-tree Device Tree Source file names** to imx6ulz-14x14-evk
 Go to **Bootloaders**. Change **Build system** to **Kconfig** and **Board defconfig** to **mx6ulz_14x14_evk**
 
 ## U-Boot
-The big change we have to make is to switch SDHC2 to SDHC1 everywhere, since mxiot boots from the first MMC device (which is required to use SD/MMC Manufacture Mode), while the i.MX6UL, ULL, and ULZ EVKs all boot from SDHC2.
+The big change you have to make is to switch SDHC2 to SDHC1 everywhere, since mxiot boots from the first MMC device (which is required to use SD/MMC Manufacture Mode), while the i.MX6UL, ULL, and ULZ EVKs all boot from SDHC2.
 
 If you're in Buildroot, you can access the U-Boot menuconfig with `make uboot-menuconfig`. Make sure to enable the FSL USDHC MMC driver (`CONFIG_FSL_USDHC=y`) — I've noticed some defconfigs don't activate this driver by default. Also, change **Environment > mmc device number** (`CONFIG_SYS_MMC_ENV_DEV`) to 0.
 

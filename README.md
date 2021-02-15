@@ -21,10 +21,12 @@ In addition to the DRAM and SD Card socket necessary for booting, mxiot also spo
  - QSPI Flash
  - Pushbutton
 
-
 WiFi and BLE are handled by whatever 44-pin standard SDIO-interfaced WiFi/BT *module du jour* you'd like to populate; the board supports all physically-compatible Ampak modules, as well as extremely low-cost alternatives, like the RTL8723BS modules regularly found for [around $2 from AliExpress](https://www.aliexpress.com/wholesale?catId=0&initiative_id=SB_20210214115323&SearchText=rtl8723bs), Taobao, or other distributors in Asia.
 
 The design is open-source, and more importantly, the BOM has wide availability and doesn't lean on ICs with limited documentation or support. This means you can prototype your project around the mxiot and then copy the guts into your own design to optimize for size, power consumption, cost, or expanded functionality.
+
+### What if I don't have Altium?
+You can [download a ZIP of the repo](https://github.com/jaydcarlson/mxiot/archive/master.zip) and upload this file directly to [Altium's online viewer](https://www.altium.com/viewer/) to interact with the PCB, schematic, BOM, and 3D model of the design without having to download any software. The repo also contains a schematic and gerbers for offline viewing.
 
 ### Supports 4-layer and 6-layer stack-ups
 For the sake of compactness, mxiot tightly arranges parts onto a dense 6-layer PCB measuring only 2.3 x 0.8 inches (58 x 20mm). Having said that, I've done many lower-cost 4-layer designs with mostly single-sided placements around the same guts of this board without any routing issues.

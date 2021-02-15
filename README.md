@@ -18,7 +18,7 @@ In addition to the DRAM and SD Card socket necessary for booting, mxiot also spo
  - WiFi and Bluetooth connectivity
  - 4x 12-bit analog inputs, care of the Texas Instruments TLA2024
  - APA102 addressable RGB LED
- - QSPI Flash
+ - QSPI Flash (that you can optionally boot from)
  - Pushbutton
 
 WiFi and BLE are handled by whatever 44-pin standard SDIO-interfaced WiFi/BT *module du jour* you'd like to populate; the board supports all physically-compatible Ampak modules, as well as extremely low-cost alternatives, like the RTL8723BS modules regularly found for [around $2 from AliExpress](https://www.aliexpress.com/wholesale?catId=0&initiative_id=SB_20210214115323&SearchText=rtl8723bs), Taobao, or other distributors in Asia.
@@ -45,7 +45,31 @@ The i.MX6's OTP key storage, TrustZone, and secure-boot capabilities let you est
 ### What if I need an LCD, CSI, Ethernet, CAN, or industrial temp grades?
 Grab the mxiot schematics as a starting point, but solder down a full-featured i.MX6ULL. These come in tons of different SKUs that mix and match peripherals, operating frequencies, and temperature grades. All of these are 100% electrically and mechanically compatible (in fact, mxiot started out as a 528 MHz i.MX6UL dev board from 5 years ago!).
 
-# Hardware Status
+# Hardware
+## PCB Manufacture
+OSHPark's test 6-layer service and JLC's 6-layer service have both been tested with the gerber files and the resulting boards pass stress-tests. While JLC's stack-up isn't ideal for the impedance targets of the design, it is much less expensive than a full-custom stack-up from a different board house. The boards will cost roughly $100 when ordered with ENIG (highly recommended). We also recommend ordering an electropolished solder stencil. I plan to do some EMC chamber testing at some point to see if the impedance mismatches on the JLC boards cause more-pronounced emissions.
+
+## Assembly
+mxiot is designed to be hand-assembled with a kitchen hotplate and low-cost hot-air gun. To assemble, paste up the top side of the PCB, place the components, and heat with a hot plate until the solder becomes molten. You can ever-so-slightly tap the BGAs on the board and they should bounce back (due to the surface tension in the solder). Pay special attention to DRAM alignment; there are a multitude of silkscreen lines that cover some, but not all, standard DDR3 footprints. 
+
+Now is a good time to test for short-circuits and open-disconnects. If you screw up a BGA placement, you can use hot air to remove the chip, then clean the pads, apply flux, and put a bare BGA (without additional paste) on the board and re-heat it on the hotplate until it passes the "poke test."  
+
+Next, flip the board over, paste up the bottom side, and place the remaining parts.
+
+## Theory of Design
+For being a WiFi/BT-enabled embedded Linux system, mxiot has an extremely terse BOM: fewer than 25 unique parts for an RTL8723-based configuration (and even fewer if you start removing extraneous peripherals). The mxiot design is much simpler than the reference EVK design, so I wanted to share some of the design decisions and trade-offs that went into this.
+
+The i.MX6UL/ULL/ULZ has several internal regulators that — while not strictly staying within recommended operating conditions — allows the entire system to be powered by a 3.3V and ~1.35V rail (provided you're using DDR3L instead of 1.5V DDR3). Rather than a bulky, complex PMIC, mxiot uses two fixed-output MIC23150s to provide these rails. The 1.35V rail is somewhat-haphazardly sequenced to come on after the 3.3V rail. 
+
+This power supply topology is designed for always-on, wall-powered applications. The platform is incapable of doing any dynamic voltage-scaling, so power consumption could be significantly worse (depending on workload) than with a PMIC or adjustable regulator.
+
+The i.MX6 has support for a multitude of a boot modes usually prototyped by GPIO strapping. Instead of exposing these signals (which would require tons of resistor switches), we rely on the SD/MMC Manufacture Mode, where the chip will always boot from MMC0 unless the OTP boot configuration memory is flashed. If you wish to boot from QSPI flash, you'll have to initially boot from MMC, and then program the OTP memory (hoping to get it right to avoid bricking your imx6).
+
+Rather than use a discrete WiFi/BT solution, mxiot uses standard 44-pin SDIO/UART modules that help make small-volume hand-assembly faster (as these circuits tend to have many different passive values). 
+
+And where possible, internal pull-ups have been used (even on the POR reset pin). There are still a few places to optimize the BOM, but this will take further testing to validate. 
+
+## Testing Status
  - [x] i.MX6ULZ
  - [x] DRAM stress tests
  - [x] RTL8723BS WiFi

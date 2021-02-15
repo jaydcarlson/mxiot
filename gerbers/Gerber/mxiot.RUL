@@ -1,4 +1,4 @@
-DRC Rules Export File for PCB: F:\Git\mxiot\mxiot.PcbDoc
+DRC Rules Export File for PCB: F:\Git\mxiot\pcb\mxiot.PcbDoc
 RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
 RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=0.00
 RuleKind=Width|RuleName=Width|Scope=Board|Minimum=4.00

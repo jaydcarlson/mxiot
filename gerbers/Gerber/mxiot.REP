@@ -2,34 +2,76 @@
 FileName = mxiot.GBR
 AutoAperture = True
 *************************************************************
-Generating : L4
-      File : mxiot.G2
+Generating : L3
+      File : mxiot.G1
 
-    Adding Layer      : L4
+    Adding Layer      : L3
 
     Adding Layer      : Multi-Layer
 
 
 Used DCodes :
-    D33
     D34
-    D36
+    D35
     D37
+    D38
     D40
     D41
     D51
-    D61
 *************************************************************
 
 *************************************************************
-Generating : Keep-Out Layer
-      File : mxiot.GKO
+Generating : L2
+      File : mxiot.GP1
 
-    Adding Layer      : Keep-Out Layer
+    Adding Layer      : L2
+
+    Adding Layer      : Multi-Layer
 
 
 Used DCodes :
-    D94
+    D52
+    D53
+    D54
+    D55
+    D56
+    D57
+    D58
+    D59
+    D60
+*************************************************************
+
+*************************************************************
+Generating : Top Paste
+      File : mxiot.GTP
+
+    Adding Layer      : Top Paste
+
+    Adding Layer      : L1
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D14
+    D15
+    D16
+    D17
+    D18
+    D19
+    D20
+    D21
+    D22
+    D23
+    D24
+    D25
+    D26
+    D27
+    D28
+    D29
+    D30
+    D31
+    D32
 *************************************************************
 
 *************************************************************
@@ -44,7 +86,7 @@ Generating : L6
 Used DCodes :
     D11
     D13
-    D19
+    D23
     D33
     D34
     D35
@@ -79,64 +121,44 @@ Used DCodes :
     D83
     D84
     D85
-    D86
 *************************************************************
 
 *************************************************************
-Generating : Bottom Overlay
-      File : mxiot.GBO
+Generating : Top Solder
+      File : mxiot.GTS
 
-    Adding Layer      : Bottom Overlay
+    Adding Layer      : Top Solder
 
-
-Used DCodes :
-    D12
-    D88
-    D89
-    D90
-    D91
-    D92
-    D93
-*************************************************************
-
-*************************************************************
-Generating : L3
-      File : mxiot.G1
-
-    Adding Layer      : L3
+    Adding Layer      : L1
 
     Adding Layer      : Multi-Layer
 
 
 Used DCodes :
+    D14
+    D15
+    D16
+    D17
+    D20
+    D21
+    D22
+    D23
+    D24
+    D25
+    D26
+    D27
+    D28
+    D29
+    D30
+    D31
+    D32
     D33
     D34
+    D35
     D36
     D37
-    D40
-    D41
-    D51
-*************************************************************
-
-*************************************************************
-Generating : L2
-      File : mxiot.GP1
-
-    Adding Layer      : L2
-
-    Adding Layer      : Multi-Layer
-
-
-Used DCodes :
-    D52
-    D53
-    D54
-    D55
-    D56
-    D57
-    D58
-    D59
-    D60
+    D38
+    D39
 *************************************************************
 
 *************************************************************
@@ -151,6 +173,49 @@ Used DCodes :
     D11
     D12
     D13
+*************************************************************
+
+*************************************************************
+Generating : L5
+      File : mxiot.GP2
+
+    Adding Layer      : L5
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D13
+    D52
+    D54
+    D55
+    D56
+    D57
+    D58
+    D59
+    D60
+    D62
+    D63
+*************************************************************
+
+*************************************************************
+Generating : L4
+      File : mxiot.G2
+
+    Adding Layer      : L4
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D34
+    D35
+    D37
+    D38
+    D40
+    D41
+    D51
+    D61
 *************************************************************
 
 *************************************************************
@@ -206,97 +271,31 @@ Used DCodes :
 *************************************************************
 
 *************************************************************
-Generating : Top Paste
-      File : mxiot.GTP
+Generating : Keep-Out Layer
+      File : mxiot.GKO
 
-    Adding Layer      : Top Paste
-
-    Adding Layer      : L1
-
-    Adding Layer      : Multi-Layer
+    Adding Layer      : Keep-Out Layer
 
 
 Used DCodes :
-    D14
-    D15
-    D16
-    D17
-    D18
-    D19
-    D20
-    D21
-    D22
-    D23
-    D24
-    D25
-    D26
-    D27
-    D28
-    D29
-    D30
-    D31
-    D32
+    D93
 *************************************************************
 
 *************************************************************
-Generating : L5
-      File : mxiot.GP2
+Generating : Bottom Overlay
+      File : mxiot.GBO
 
-    Adding Layer      : L5
-
-    Adding Layer      : Multi-Layer
+    Adding Layer      : Bottom Overlay
 
 
 Used DCodes :
-    D13
-    D52
-    D54
-    D55
-    D56
-    D57
-    D58
-    D59
-    D60
-    D62
-    D63
-*************************************************************
-
-*************************************************************
-Generating : Top Solder
-      File : mxiot.GTS
-
-    Adding Layer      : Top Solder
-
-    Adding Layer      : L1
-
-    Adding Layer      : Multi-Layer
-
-
-Used DCodes :
-    D16
-    D17
-    D18
-    D19
-    D20
-    D21
-    D22
-    D23
-    D24
-    D25
-    D26
-    D27
-    D28
-    D29
-    D30
-    D31
-    D32
-    D33
-    D34
-    D35
-    D36
-    D37
-    D38
-    D39
+    D12
+    D87
+    D88
+    D89
+    D90
+    D91
+    D92
 *************************************************************
 
 *************************************************************
@@ -311,7 +310,7 @@ Generating : Bottom Paste
 
 
 Used DCodes :
-    D19
+    D23
     D64
     D65
     D66
@@ -323,12 +322,11 @@ Used DCodes :
     D72
     D73
     D74
-    D76
+    D75
     D77
     D78
     D79
-    D80
-    D87
+    D86
 *************************************************************
 
 *************************************************************
@@ -343,7 +341,7 @@ Generating : Bottom Solder
 
 
 Used DCodes :
-    D19
+    D23
     D33
     D34
     D35
@@ -367,6 +365,5 @@ Used DCodes :
     D77
     D78
     D79
-    D80
 *************************************************************
 

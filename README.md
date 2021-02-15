@@ -30,9 +30,9 @@ The design is open-source, and more importantly, the BOM has wide availability a
 For the sake of compactness, mxiot tightly arranges parts onto a dense 6-layer PCB measuring only 2.3 x 0.8 inches (58 x 20mm). Having said that, I've done many lower-cost 4-layer designs with mostly single-sided placements around the same guts of this board without any routing issues.
 
 ### Security
-I'm a hardware guy, not a cybersecurity consultant. It's really easy to roll your eyes when people start talking about secure-boot and key storage, but seriously, folks, if you are making devices that you're going to sell to people that will connect to the internet, you have an ethical obligation to think through the security implications. You should be prototyping around hardware that has the underlying capabilities that allow you to turn on security measures during the design cycle.
+I'm a hardware guy, not a cybersecurity consultant, so I know that it's really easy to roll your eyes when people start talking about secure-boot and key storage. But seriously, folks, if you are making devices that you're going to sell to people that will connect to the internet, you have an ethical obligation to think through the security implications. You should be prototyping around hardware that has the underlying capabilities that allow you to turn on security measures during the design cycle.
 
-The i.MX6's OTP key storage, TrustZone, and secure-boot capabilities let you establish a chain of trust from the boot ROM, to U-Boot, to the kernel, and an encrypted rootfs, which will allow you to safely store private data (like keys!) without having to worry about physical device security (you can, indeed, continue to boot from MicroSD cards). You can also transport firmware updates over unencrypted channels and not have to worry about your image being reverse-engineered or modified.
+The i.MX6's OTP key storage, TrustZone, and secure-boot capabilities let you establish a chain of trust from the boot ROM, to U-Boot, to the kernel, and an encrypted rootfs, which will allow you to store private data (like keys!) without having to worry as much about physical device security. You can also transport firmware updates over unencrypted channels and not have to worry about your image being reverse-engineered or modified.
 
 ### What about...?
  - *...the Raspberry Pi Zero?* While it has plenty of DRAM, the older ARM11 processor is incompatible with newer application frameworks. There's also no pathway to using the processor in a custom design, and no secure boot capability.
@@ -60,7 +60,7 @@ Not tested yet:
 # Booting Linux
 While you could use mxiot as a (very bad) single-board computer, it's designed for embedded tasks. Most of the sensors and peripherals you'll use with this board will require kernel and DTS modifications; I recommend setting up a project-specific Buildroot tree you can work out of to build a U-Boot, Linux kernel, and rootfs with the specific packages you need.
 
-I don't have published patches yet, but you can largely use an unmodified i.MX6ULZ EVK port to get mxiot to boot. Honestly, in the grand scheme of things, the amount of work to get mxiot booting is pretty minimal compared to the time you'll spend getting auxiliary drivers working in Linux.
+I don't have published patches yet, but you can largely use an unmodified i.MX6ULZ EVK port to get mxiot to boot. 
 
 ## Buildroot
 Buildroot doesn't have an i.MX6ULZ defconfig, but we can start with an i.MX6ULL one and go from there
@@ -83,7 +83,7 @@ If you're in Buildroot, you can access the U-Boot menuconfig with `make uboot-me
 You'll have to hack at `u-boot/include/configs/mx6ullevk.h` to switch the default SDHC2 boot device to SDHC1. These two changes should do the trick:
 ```
 //#define CONFIG_SYS_FSL_ESDHC_ADDR   USDHC2_BASE_ADDR
-#define CONFIG_SYS_FSL_ESDHC_ADDR	  USDHC1_BASE_ADDR
+#define CONFIG_SYS_FSL_ESDHC_ADDR     USDHC1_BASE_ADDR
 
 ...
 
@@ -96,7 +96,7 @@ There are lots of changes to make here depending on what you want your board to 
 Otherwise, here are some notes to get the onboard hardware working:
 
 ### RTL8723BS WiFi / Bluetooth module
-To get WiFi working, choose `CONFIG_RTL8723BS=m`
+To get WiFi working, assuming you've soldered down an RTL8723BS module, choose `CONFIG_RTL8723BS=m`
 
 Bluetooth requires activating three-wire HCI support in the Linux kernel (`BT_HCIUART_3WIRE`) and using the appropriate [firmware and hciattach software available from lwfinger](https://github.com/lwfinger/rtl8723bs_bt).
 
